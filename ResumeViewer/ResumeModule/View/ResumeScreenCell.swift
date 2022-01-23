@@ -75,7 +75,7 @@ class ResumeScreenCell: UITableViewCell {
     }()
     
     lazy var kindOfActivityeLabel: UILabel! = {
-        let kndLabel = UILabel(text: "", font: .italicSystemFont(ofSize: 14))
+        let kndLabel = UILabel(text: "", font: .italicSystemFont(ofSize: 11))
         kndLabel.numberOfLines = 0
         return kndLabel
     }()

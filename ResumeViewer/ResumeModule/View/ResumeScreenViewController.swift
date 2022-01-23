@@ -45,7 +45,7 @@ extension ResumeScreenViewController: UITableViewDataSource {
             cell.fullNameLabel.text = resumePerson.fio
             cell.companyNameLabel.text = resumePerson.company
             cell.kindOfActivityeLabel.text = resumePerson.post
-            cell.personImage.sd_setImage(with: URL(string: resumePerson.photo ?? ""), placeholderImage: nil)
+            cell.personImage.sd_setImage(with: URL(string: resumePerson.photo ?? ""), placeholderImage: UIImage(named: "no_people"))
         }
         return cell
     }
