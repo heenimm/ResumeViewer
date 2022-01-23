@@ -1,0 +1,6 @@
+framework module Pods_ResumeViewer {
+  umbrella header "Pods-ResumeViewer-umbrella.h"
+
+  export *
+  module * { export * }
+}
