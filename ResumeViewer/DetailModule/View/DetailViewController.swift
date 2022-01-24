@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
     }()
     
     lazy var personImage: UIImageView = {
-        let prsnImage = UIImageView(cornerRadius: view.frame.size.width / 4)
+        let prsnImage = UIImageView(cornerRadius: view.frame.size.height / 4)
         return prsnImage
     }()
     
@@ -55,7 +55,6 @@ class DetailViewController: UIViewController {
         }
         
         fullNameLabel.snp.makeConstraints {
-//            $0.centerX.equalToSuperview()
             $0.right.left.equalToSuperview().inset(100)
             $0.top.equalTo(personImage.snp.bottom).offset(20)
         }
@@ -72,7 +71,34 @@ class DetailViewController: UIViewController {
             $0.top.equalTo(companyNameLabel.snp.bottom).offset(8)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        personImage.snp.makeConstraints {
+            $0.width.height.equalTo(160)
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().inset(90)
+        }
+        
+        fullNameLabel.snp.makeConstraints {
+            $0.right.left.equalToSuperview().inset(100)
+            $0.top.equalTo(personImage.snp.bottom).offset(12)
+        }
+              
+        companyNameLabel.snp.makeConstraints {
+            $0.height.equalTo(30)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(fullNameLabel.snp.bottom).offset(4)
+        }
+        
+        kindOfActivityeLabel.snp.makeConstraints {
+            $0.height.equalTo(30)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(companyNameLabel.snp.bottom).offset(4)
+        }
+    }
 }
+
 
 
 extension DetailViewController: DetailViewProtocol {

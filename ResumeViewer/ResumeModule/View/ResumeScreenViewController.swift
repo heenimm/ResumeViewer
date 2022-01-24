@@ -22,6 +22,7 @@ class ResumeScreenViewController: UIViewController {
     
     private func createTableView (){
         resumeTableView = UITableView(frame: view.bounds, style: .plain)
+        resumeTableView.rowHeight = UITableView.automaticDimension
         resumeTableView.translatesAutoresizingMaskIntoConstraints = false
         resumeTableView.register(ResumeScreenCell.self, forCellReuseIdentifier: ResumeScreenCell.identifier)
         resumeTableView.separatorStyle = .none
@@ -53,8 +54,9 @@ extension ResumeScreenViewController: UITableViewDataSource {
 
 
 extension ResumeScreenViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return CGFloat(200)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let resumePerson = self.presenter.resume?.data[indexPath.row] else {return}

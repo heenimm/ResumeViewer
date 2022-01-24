@@ -24,7 +24,7 @@ func request(success: @escaping (ResumeData) -> (), failure: @escaping () -> () 
                                do {
                                    let result = try JSONDecoder().decode(ResumeData.self, from: data)
                                    success(result)
-                                print(result.data)
+//                                print(result.data)
                                } catch {
                                    failure()
                                }
