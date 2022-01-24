@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
     }()
     
     lazy var personImage: UIImageView = {
-        let prsnImage = UIImageView(cornerRadius: view.frame.size.height / 4)
+        let prsnImage = UIImageView(cornerRadius: view.frame.size.width / 7 )
         return prsnImage
     }()
     
@@ -47,55 +47,53 @@ class DetailViewController: UIViewController {
     func setViews (){
         view.backgroundColor = #colorLiteral(red: 0.9761081524, green: 0.9761081524, blue: 0.9761081524, alpha: 1)
         [fullNameLabel,personImage,companyNameLabel, kindOfActivityeLabel].forEach{view.addSubview($0)}
-        
-        personImage.snp.makeConstraints {
-            $0.width.height.equalTo(200)
-            $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(200)
-        }
-        
-        fullNameLabel.snp.makeConstraints {
-            $0.right.left.equalToSuperview().inset(100)
-            $0.top.equalTo(personImage.snp.bottom).offset(20)
-        }
-              
-        companyNameLabel.snp.makeConstraints {
-            $0.height.equalTo(40)
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(fullNameLabel.snp.bottom).offset(8)
-        }
-        
-        kindOfActivityeLabel.snp.makeConstraints {
-            $0.height.equalTo(40)
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(companyNameLabel.snp.bottom).offset(8)
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        personImage.snp.makeConstraints {
-            $0.width.height.equalTo(160)
-            $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(90)
-        }
-        
-        fullNameLabel.snp.makeConstraints {
-            $0.right.left.equalToSuperview().inset(100)
-            $0.top.equalTo(personImage.snp.bottom).offset(12)
-        }
-              
-        companyNameLabel.snp.makeConstraints {
-            $0.height.equalTo(30)
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(fullNameLabel.snp.bottom).offset(4)
-        }
-        
-        kindOfActivityeLabel.snp.makeConstraints {
-            $0.height.equalTo(30)
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(companyNameLabel.snp.bottom).offset(4)
-        }
+   
+        if UIDevice.current.orientation.isLandscape {
+            personImage.snp.makeConstraints {
+                $0.width.height.equalTo(160)
+                $0.centerX.equalToSuperview()
+                $0.top.equalToSuperview().inset(90)
+            }
+            
+            fullNameLabel.snp.makeConstraints {
+                $0.right.left.equalToSuperview().inset(100)
+                $0.top.equalTo(personImage.snp.bottom).offset(12)
+            }
+                  
+            companyNameLabel.snp.makeConstraints {
+                $0.height.equalTo(30)
+                $0.centerX.equalToSuperview()
+                $0.top.equalTo(fullNameLabel.snp.bottom).offset(4)
+            }
+            
+            kindOfActivityeLabel.snp.makeConstraints {
+                $0.height.equalTo(30)
+                $0.centerX.equalToSuperview()
+                $0.top.equalTo(companyNameLabel.snp.bottom).offset(4)
+            } } else {
+                personImage.snp.makeConstraints {
+                    $0.width.height.equalTo(200)
+                    $0.centerX.equalToSuperview()
+                    $0.top.equalToSuperview().inset(200)
+                }
+                
+                fullNameLabel.snp.makeConstraints {
+                    $0.right.left.equalToSuperview().inset(100)
+                    $0.top.equalTo(personImage.snp.bottom).offset(20)
+                }
+                      
+                companyNameLabel.snp.makeConstraints {
+                    $0.height.equalTo(40)
+                    $0.centerX.equalToSuperview()
+                    $0.top.equalTo(fullNameLabel.snp.bottom).offset(8)
+                }
+                
+                kindOfActivityeLabel.snp.makeConstraints {
+                    $0.height.equalTo(40)
+                    $0.centerX.equalToSuperview()
+                    $0.top.equalTo(companyNameLabel.snp.bottom).offset(8)
+                }                   }
+     
     }
 }
 
