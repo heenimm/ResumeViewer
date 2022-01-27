@@ -9,33 +9,23 @@ import Foundation
 import Alamofire
 
 protocol NetworkServiceProtocol {
-    func request(success: @escaping (ResumeData) -> (), failure: @escaping () -> () )
+    func request(completion: @escaping (Result<ResumeData, Error>) -> Void )
 }
 
 class NetworkService: NetworkServiceProtocol {
-
-func request(success: @escaping (ResumeData) -> (), failure: @escaping () -> () ) {
-           let urlString = "http://app.cre.ru/api8/PlayersPersonList"
-               AF.request(urlString, method: .get, parameters: nil).responseJSON(completionHandler:
-                   { (response) in
-                   switch response.result {
-                       case .success:
-                           if let data = response.data {
-                               do {
-                                   let result = try JSONDecoder().decode(ResumeData.self, from: data)
-                                   success(result)
-//                                print(result.data)
-                               } catch {
-                                   failure()
-                               }
-                           } else {
-                               failure()
-                           }
-                       case .failure:
-                           failure()
-                           print("ERROR")
-                       }
-               })
-
-           }
+    
+    func request(completion: @escaping (Result<ResumeData, Error>) -> Void ) {
+        let urlString = "http://app.cre.ru/api8/PlayersPersonList"
+        AF.request(urlString, method: .get, parameters: nil).responseJSON(completionHandler:
+                                                                            { (response) in
+                                                                                if let data = response.data {
+                                                                                    do {
+                                                                                        let result = try JSONDecoder().decode(ResumeData.self, from: data)
+                                                                                        completion(.success(result))
+                                                                                    } catch {
+                                                                                        completion(.failure(error))
+                                                                                    }
+                                                                                }
+                                                                            })
+    }
 }

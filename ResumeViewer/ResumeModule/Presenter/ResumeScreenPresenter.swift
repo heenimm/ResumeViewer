@@ -28,15 +28,16 @@ class ResumeScreenPresenter: ResumeScreenPresenterProtocol {
     }
     
     func getResume() {
-        networkService.request (success: { [weak self] response in
-            
+        networkService.request { [weak self] response in
             guard let self = self else { return }
-            self.resume = response
-            self.view?.success()
-
-        }, failure: {
-            print("Error")
-
-        })
+            switch response {
+            case .success(let value):
+                self.resume = value
+                self.view?.success()
+            case .failure(let error):
+                print(error.localizedDescription)
+                
+            }
+        }
     }
 }
