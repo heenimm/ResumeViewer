@@ -6,26 +6,24 @@
 //
 
 import UIKit
-protocol Builder {
-    static func createResumeModule() -> UIViewController
-    static func createDetailModule(resume: Resume?) -> UIViewController
+protocol AssemblyBuilderProtocol {
+    func createResumeModule(router: RouterProtocol) -> UIViewController
+    func createDetailModule(resume: Resume?, router: RouterProtocol) -> UIViewController
 
 }
 
-class ModuleBuilder: Builder {
-    
-    static func createResumeModule() -> UIViewController {
+class AssemblyModuleBuilder: AssemblyBuilderProtocol {
+    func createResumeModule(router: RouterProtocol) -> UIViewController {
         let view = ResumeScreenViewController()
         let networkService = NetworkService()
-        let presenter = ResumeScreenPresenter(view: view, networkService: networkService)
+        let presenter = ResumeScreenPresenter(view: view, networkService: networkService, router: router)
         view.presenter = presenter
         return view
     }
-    
-    static func createDetailModule(resume: Resume?) -> UIViewController {
+    func createDetailModule(resume: Resume?, router: RouterProtocol) -> UIViewController {
         let view = DetailViewController()
         let networkService = NetworkService()
-        let presenter = DetailPresenter(view: view, networkService: networkService, resume: resume)
+        let presenter = DetailPresenter(view: view, networkService: networkService, resume: resume, router: router)
         view.presenter = presenter
         return view
     }

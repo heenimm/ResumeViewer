@@ -15,15 +15,22 @@ protocol ResumeScreenViewProtocol: AnyObject {
 
 protocol ResumeScreenPresenterProtocol: AnyObject {
     func getResume()
+    func tapOnTheResume(resume: Resume?)
     var resume: ResumeData? {get set}
 }
 
 class ResumeScreenPresenter: ResumeScreenPresenterProtocol {
+    func tapOnTheResume(resume: Resume?) {
+        router?.showDetail(resume: resume)
+    }
+    
     var resume: ResumeData?
+    var router: RouterProtocol?
     weak var view: ResumeScreenViewProtocol?
     let networkService: NetworkServiceProtocol!
-    required init(view: ResumeScreenViewProtocol, networkService: NetworkServiceProtocol) {
+    required init(view: ResumeScreenViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol) {
         self.view = view
+        self.router = router
         self.networkService = networkService
     }
     

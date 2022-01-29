@@ -59,9 +59,9 @@ extension ResumeScreenViewController: UITableViewDelegate {
         return CGFloat(200)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let resumePerson = self.presenter.resume?.data[indexPath.row] else {return}
-        let detailViewController = ModuleBuilder.createDetailModule(resume:resumePerson)
-        navigationController?.pushViewController(detailViewController, animated: false)
+         let resumePerson = self.presenter.resume?.data[indexPath.row]
+        presenter.tapOnTheResume(resume: resumePerson)
+        
         tableView.deselectRow(at: indexPath, animated: false)
     }
     

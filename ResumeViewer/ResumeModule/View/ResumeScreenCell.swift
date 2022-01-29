@@ -59,7 +59,6 @@ class ResumeScreenCell: UITableViewCell {
     
     lazy var personImage: UIImageView = {
         let prsnImage = UIImageView(cornerRadius: self.frame.size.width / 6)
-        prsnImage.image = UIImage(named: "no_people")
         return prsnImage
     }()
     
